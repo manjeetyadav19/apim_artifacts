@@ -1,0 +1,21 @@
+environments:
+  - name: dev
+    endpoints:
+      production:
+        url: http://dev.be.com:8595/
+        config:
+          retryTimeOut: $RETRY
+      sandbox:
+        url: http://dev.be.com:8595/
+        config:
+          retryTimeOut: $RETRY        
+  - name: prod
+    endpoints:
+      production:
+        url: http://prod.be.com:8595/
+        config:
+          retryTimeOut: $RETRY      
+      sandbox:
+        url: http://prod.be.com:8595/
+        config:
+          retryTimeOut: $RETRY 
