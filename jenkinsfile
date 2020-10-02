@@ -12,7 +12,8 @@ pipeline {
         CURR_DIR = pwd()
         API_DIR = '/CRMAPI'
         DEV_ENV = 'dev'
-        TEST_SCRIPT_FILE = 'test_script.postman_collection.json' 
+        PROD_ENV = 'prod'
+        TEST_SCRIPT_FILE = 'test_script.postman_collection_crmapi.json' 
     }
     stages {
         
@@ -23,7 +24,7 @@ pipeline {
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
                 '''
-                git branch: "master",
+                git branch: "main",
                 url: 'https://github.com/dushansachinda/apim_artifacts.git',
                 credentialsId: 'demo-github-cred'
             }
@@ -51,6 +52,19 @@ pipeline {
             }
         }
         
+        stage('Deploy to Production') {
+            environment{
+                RETRY = '60'
+            }
+            steps {
+                sh 'echo "Logging into $PROD_ENV"'
+                withCredentials([usernamePassword(credentialsId: 'prod_apim_admin', usernameVariable: 'PROD_USERNAME', passwordVariable: 'PROD_PASSWORD')]) {
+                    sh 'apictl login $PROD_ENV -u $PROD_USERNAME -p $PROD_PASSWORD -k'                        
+                }
+                echo 'Deploying to Production'
+                sh 'apictl import-api -f $CURR_DIR$API_DIR -e $PROD_ENV -k --preserve-provider --update --verbose'
+            }
+        }
     
     }
     
