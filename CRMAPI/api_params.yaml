@@ -6,7 +6,7 @@ environments:
         config:
           retryTimeOut: $RETRY
       sandbox:
-        url: http://devtest.be.com:8595/
+        url: http://devnow.be.com:8595/
         config:
           retryTimeOut: $RETRY        
   - name: prod
@@ -16,6 +16,6 @@ environments:
         config:
           retryTimeOut: $RETRY      
       sandbox:
-        url: http://prod-foo.be.com:8595/
+        url: http://prod-now.be.com:8595/
         config:
           retryTimeOut: $RETRY 
