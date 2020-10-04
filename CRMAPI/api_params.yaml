@@ -16,6 +16,6 @@ environments:
         config:
           retryTimeOut: $RETRY      
       sandbox:
-        url: http://prod-now.be.demo.test.com:8595/
+        url: http://prod-now.test.demo.test.com:8595/
         config:
           retryTimeOut: $RETRY 
