@@ -13,7 +13,7 @@ pipeline {
         API_DIR = '/CRMAPI'
         DEV_ENV = 'dev'
         PROD_ENV = 'prod'
-        TEST_SCRIPT_FILE = 'test_script.postman_collection_crmapi.json' 
+        TEST_SCRIPT_FILE = 'test_script.postman_collection_crmapi320.json' 
     }
     stages {
         
@@ -31,7 +31,7 @@ pipeline {
         }
         
 
-        stage('Deploy to UAT') {
+        stage('Deploy to Dev') {
             environment{
                 RETRY = '80'
             }
